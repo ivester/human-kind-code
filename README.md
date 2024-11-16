@@ -1,75 +1,37 @@
-# Nuxt Minimal Starter
+# Human Kind Code Project
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Docker
 
-## Setup
-
-Make sure to install dependencies:
+Build docker image:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+docker build -t <image_name> .
 ```
 
-## Development Server
+- `docker build`: Build image from Dockerfile
+- `-t <image_name>`: Assign a tag to the image
 
-Start the development server on `http://localhost:3000`:
+Run docker container:
 
 ```bash
-# npm
-npm run dev
+docker run -d -p 3000:3000 <image_name>
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+- `docker run`: Start a container from image
+- `-d`: Run container in background
+- `-p 3000:3000`: Map port 3000 of host to port 3000 of container
+- `<image_name>`: Name of the image
 
-Build the application for production:
+You can access the app at `http://localhost:3000` now.
+
+## Docker Compose
+
+Build and run docker container using docker-compose:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+docker-compose up -d
 ```
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- `docker-compose up`: Build and run container from docker-compose.yml
+- `-d`: Run container in background
