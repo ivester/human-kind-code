@@ -35,3 +35,10 @@ docker-compose up -d
 
 - `docker-compose up`: Build and run container from docker-compose.yml
 - `-d`: Run container in background
+
+### System Architecture
+
+```mermaid
+flowchart TD
+    B[Host Machine] --> |3000:3000| A[nuxt-app]
+```
