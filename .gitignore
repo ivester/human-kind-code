@@ -32,6 +32,7 @@ terraform.tfstate.backup
 
 # Terraform configuration files
 .terraform/
+.terraform.tfstate.lock.info
 .terraform.lock.hcl
 
 # Crash logs
