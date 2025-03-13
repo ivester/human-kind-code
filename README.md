@@ -1,21 +1,45 @@
 # Human Kind Code Project
 
-## Docker
+## GCP and Terraform
 
-Build docker image:
+Configure GCP project (the project is there and stays there) and Kubernetes cluster using Terraform:
 
 ```bash
-docker build -t <image_name> .
+terraform init
+terraform apply
+```
+
+Shut down service on GCP project to save cost using Terraform:
+
+```bash
+terraform destroy
+```
+
+## Docker
+
+### Build and Push image to GCR (Google Container Registry)
+
+```bash
+# Authenticate with GCP
+gcloud auth configure-docker
+
+# Build the Docker image
+docker build -t gcr.io/human-kind-code/hkc-nuxt-app:latest .
+
+# Push the Docker image to GCR
+docker push gcr.io/human-kind-code/hkc-nuxt-app:latest
 ```
 
 - `docker build`: Build image from Dockerfile
-- `-t <image_name>`: Assign a tag to the image
+- `-t gcr.io/<your-project-id>/nuxt-app:latest`: Assign a tag to the image
+- `push gcr.io/<your-project-id>/nuxt-app:latest`: Push docker image to GCR (Google Container Registry)
+
+### Run Docker Container locally
 
 Run docker container:
 
 ```bash
-docker run -d -p 3000:3000 <image_name>
-
+docker run -d -p 3000:3000 gcr.io/human-kind-code/hkc-nuxt-app:latest
 ```
 
 - `docker run`: Start a container from image
@@ -23,9 +47,7 @@ docker run -d -p 3000:3000 <image_name>
 - `-p 3000:3000`: Map port 3000 of host to port 3000 of container
 - `<image_name>`: Name of the image
 
-You can access the app at `http://localhost:3000` now.
-
-## Docker Compose
+### Docker Compose
 
 Build and run docker container using docker-compose:
 
@@ -36,7 +58,22 @@ docker-compose up -d
 - `docker-compose up`: Build and run container from docker-compose.yml
 - `-d`: Run container in background
 
-### System Architecture
+## K8s
+
+```bash
+# Authenticate with GKE cluster
+gcloud container clusters get-credentials hkc --region europe-west3 --project human-kind-code
+
+# Check if the nodes are ready
+kubectl get nodes
+
+# Apply the Kubernetes configuration
+kubectl apply -f ./k8s-deployment.yaml
+```
+
+- `gcloud container clusters get-credentials <your-cluster-name> --region <your-region>`: Authenticate with GKE cluster
+
+## System Architecture / Design
 
 ```mermaid
 flowchart TD
@@ -45,13 +82,13 @@ flowchart TD
 
 <!-- TODO start - temporary from https://app.brainboard.co/ -->
 
+### Google Cloud Platform and Kubernetes
+
 brainboard generates images from terraform config - I think it's free to use if I don't use it to deploy anything from it. Lets see if things still work after the trial.
 
 ![brainboard](./docs/attachments/system-architecture.png)
 
 <!-- TODO temporary from Gemini -->
-
-#### Google Cloud Platform and Kubernetes
 
 ```mermaid
 graph LR
@@ -78,7 +115,7 @@ graph LR
     end
 ```
 
-##### Detailed Explanation
+#### Detailed Explanation
 
 Project and Region:
 
@@ -136,7 +173,7 @@ IAP is used for secure SSH access.
 The system is designed to be scalable using GKE node pool autoscaling.
 Logging and monitoring are enabled through IAM roles.
 
-###### K8S cluster
+#### K8S cluster
 
 ```mermaid
 graph TD

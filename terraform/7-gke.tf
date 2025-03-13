@@ -35,3 +35,24 @@ resource "google_container_cluster" "gke" {
     master_ipv4_cidr_block  = "192.168.0.0/28"
   }
 }
+
+# resource "kubernetes_secret" "gcr_json_key" {
+#   metadata {
+#     name      = "gcr-json-key"
+#     namespace = "default"
+#   }
+
+#   data = {
+#     ".dockerconfigjson" = base64encode(jsonencode({
+#       auths = {
+#         "gcr.io" = {
+#           username = "_json_key"
+#           password = file("<path-to-your-service-account-key>.json")
+#           email    = "hkc-gke@human-kind-code.iam.gserviceaccount.com"
+#         }
+#       }
+#     }))
+#   }
+
+#   type = "kubernetes.io/dockerconfigjson"
+# }

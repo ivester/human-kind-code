@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hkc-nuxt-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hkc-nuxt-app
+  template:
+    metadata:
+      labels:
+        app: hkc-nuxt-app
+    spec:
+      containers:
+      - name: hkc-nuxt-app
+        image: gcr.io/human-kind-code/hkc-nuxt-app:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        env:
+        - name: PORT
+          value: "3000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hkc-nuxt-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: hkc-nuxt-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
