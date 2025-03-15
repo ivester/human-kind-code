@@ -1,7 +1,3 @@
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  rel="stylesheet"
-/>
 # Human Kind Code Project
 
 ## GCP and Terraform
@@ -77,27 +73,32 @@ kubectl apply -f ./k8s-deployment.yaml
 
 - `gcloud container clusters get-credentials <your-cluster-name> --region <your-region>`: Authenticate with GKE cluster
 
-## TEst
+## Test
 
-- [ ] remove border of image
-- [ ] remove padding of icon
+### Font Awesome
+
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  rel="stylesheet"
+/>
+
+- [ ] https://mermaid.js.org/syntax/flowchart.html#default-class
 
 ```mermaid
 flowchart TD
-    B["fa:fa-twitter for peace"]
     B-->C[fa:fa-ban forbidden]
     B-->D(fa:fa-spinner)
     B-->E(A fa:fa-camera-retro perhaps?)
 ```
 
+### Images
+
 ```mermaid
 flowchart TD
-    D(<img src='./docs/attachments/access_context_manager.svg' />)
-    C -->|Two| E@{ icon: "fa:user", form: "circle", label: "User Icon", pos: "t", h: 60 }
-    C -->|Three| F(fa:fa-car Car)
-    F --> G:::foo@{ img: "./docs/attachments/access_context_manager.svg", label: "Access Context Manager", pos: "t", w: 80, h: 80, constraint: "on" }
-    %% G --> H@{ img: "https://picsum.photos/200/300", label: "Image Label", pos: "t", w: 200, h: 300, constraint: "off" }
+    D(TextA <img src='./docs/attachments/access_context_manager.svg' style="height:80px"/> <span style="color:red;border:solid green">TextA</span>):::bar
+    G:::foo@{ img: "./docs/attachments/access_context_manager.svg", label: "Access Context Manager", pos: "t", w: 80, h: 80, constraint: "on" }
     classDef foo fill:transparent,stroke:transparent
+    classDef bar fill:transparent,stroke:transparent
 ```
 
 ## System Architecture / Design
