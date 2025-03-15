@@ -14,6 +14,12 @@ resource "google_project_iam_member" "gke_metrics" {
   member  = "serviceAccount:${google_service_account.gke.email}"
 }
 
+resource "google_project_iam_member" "gke_node_pool_artifact_registry" {
+  project = "human-kind-code"
+  role    = "roles/artifactregistry.reader"
+  member  = "serviceAccount:${google_service_account.gke.email}"
+}
+
 resource "google_container_node_pool" "general" {
   name    = "general"
   cluster = google_container_cluster.gke.id
@@ -38,5 +44,10 @@ resource "google_container_node_pool" "general" {
 
     service_account = google_service_account.gke.email
     oauth_scopes    = ["https://www.googleapis.com/auth/cloud-platform"]
+
+    metadata = {
+      "kubernetes.io/arch" = "amd64"
+      "kubernetes.io/os"   = "linux"
+    }
   }
 }

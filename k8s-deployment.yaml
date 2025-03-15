@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hkc-nuxt-app
-        image: gcr.io/human-kind-code/hkc-nuxt-app:latest
+        image: europe-west3-docker.pkg.dev/human-kind-code/hkc-docker-repo/hkc-nuxt-app:latest
         ports:
         - containerPort: 3000
         resources:

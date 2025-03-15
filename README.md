@@ -1,3 +1,7 @@
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  rel="stylesheet"
+/>
 # Human Kind Code Project
 
 ## GCP and Terraform
@@ -21,25 +25,25 @@ terraform destroy
 
 ```bash
 # Authenticate with GCP
-gcloud auth configure-docker
+gcloud auth configure-docker europe-west3-docker.pkg.dev
 
-# Build the Docker image
-docker build -t gcr.io/human-kind-code/hkc-nuxt-app:latest .
+# Build the Docker image for GKE k8s cluster
+docker build --platform linux/amd64 -t europe-west3-docker.pkg.dev/human-kind-code/hkc-docker-repo/hkc-nuxt-app:latest .
 
 # Push the Docker image to GCR
-docker push gcr.io/human-kind-code/hkc-nuxt-app:latest
+docker push europe-west3-docker.pkg.dev/human-kind-code/hkc-docker-repo/hkc-nuxt-app:latest
 ```
 
 - `docker build`: Build image from Dockerfile
-- `-t gcr.io/<your-project-id>/nuxt-app:latest`: Assign a tag to the image
-- `push gcr.io/<your-project-id>/nuxt-app:latest`: Push docker image to GCR (Google Container Registry)
+- `-t <region>-docker.pkg.dev/<your-project-id>/hkc-docker-repo/hkc-nuxt-app:latest`: Assign a tag to the image
+- `push <region>-docker.pkg.dev/<your-project-id>/hkc-docker-repo/hkc-nuxt-app:latest`: Push docker image to GCR (Google Container Registry)
 
 ### Run Docker Container locally
 
 Run docker container:
 
 ```bash
-docker run -d -p 3000:3000 gcr.io/human-kind-code/hkc-nuxt-app:latest
+docker run -d -p 3000:3000 europe-west3-docker.pkg.dev/human-kind-code/hkc-docker-repo/hkc-nuxt-app:latest
 ```
 
 - `docker run`: Start a container from image
@@ -72,6 +76,29 @@ kubectl apply -f ./k8s-deployment.yaml
 ```
 
 - `gcloud container clusters get-credentials <your-cluster-name> --region <your-region>`: Authenticate with GKE cluster
+
+## TEst
+
+- [ ] remove border of image
+- [ ] remove padding of icon
+
+```mermaid
+flowchart TD
+    B["fa:fa-twitter for peace"]
+    B-->C[fa:fa-ban forbidden]
+    B-->D(fa:fa-spinner)
+    B-->E(A fa:fa-camera-retro perhaps?)
+```
+
+```mermaid
+flowchart TD
+    D(<img src='./docs/attachments/access_context_manager.svg' />)
+    C -->|Two| E@{ icon: "fa:user", form: "circle", label: "User Icon", pos: "t", h: 60 }
+    C -->|Three| F(fa:fa-car Car)
+    F --> G:::foo@{ img: "./docs/attachments/access_context_manager.svg", label: "Access Context Manager", pos: "t", w: 80, h: 80, constraint: "on" }
+    %% G --> H@{ img: "https://picsum.photos/200/300", label: "Image Label", pos: "t", w: 200, h: 300, constraint: "off" }
+    classDef foo fill:transparent,stroke:transparent
+```
 
 ## System Architecture / Design
 
