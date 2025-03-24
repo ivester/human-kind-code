@@ -7,8 +7,7 @@ resource "google_compute_network" "vpc" {
   depends_on = [google_project_service.apis]
 }
 
-# This route defines a default route for the VPC network
-# directing all outbound traffic (0.0.0.0/0) to the default internet gateway
+# TODO can and should I remove this one? I think this is the default router which I don't need right now I think since I only have GKE with NAT.
 resource "google_compute_route" "default_route" {
   name             = "default-route"
   dest_range       = "0.0.0.0/0"

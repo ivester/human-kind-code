@@ -73,32 +73,34 @@ kubectl apply -f ./k8s-deployment.yaml
 
 - `gcloud container clusters get-credentials <your-cluster-name> --region <your-region>`: Authenticate with GKE cluster
 
-## Test
+## Charts
 
-### Font Awesome
+### Images and Icons
 
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   rel="stylesheet"
 />
 
-- [ ] https://mermaid.js.org/syntax/flowchart.html#default-class
-
 ```mermaid
-flowchart TD
-    B-->C[fa:fa-ban forbidden]
-    B-->D(fa:fa-spinner)
-    B-->E(A fa:fa-camera-retro perhaps?)
-```
+graph TD
+    transparentOne:::transparentClass
 
-### Images
+    subgraph test[<div style="display:flex;align-items:center"><img src="./docs/attachments/access_context_manager.svg" style="height:60px;padding-top:5px"><span style="display:inline-block;padding-left: 7px">subgraph name</span></div>]
+        %% transparent subgraph to make more space
+        subgraph transparentOne[" "]
+            A(fa:fa-ban forbidden <img src='./docs/attachments/access_context_manager.svg' style="height:60px"/> <span style="color:red;border:solid green">fa:fa-spinner loading</span>):::bar
+            B(fa:fa-ban forbidden <img src='./docs/attachments/access_context_manager.svg' style="height:60px"/> <span style="color:red;border:solid green">fa:fa-spinner loading</span>):::bar
 
-```mermaid
-flowchart TD
-    D(TextA <img src='./docs/attachments/access_context_manager.svg' style="height:80px"/> <span style="color:red;border:solid green">TextA</span>):::bar
-    G:::foo@{ img: "./docs/attachments/access_context_manager.svg", label: "Access Context Manager", pos: "t", w: 80, h: 80, constraint: "on" }
-    classDef foo fill:transparent,stroke:transparent
-    classDef bar fill:transparent,stroke:transparent
+            G:::foo@{ img: "./docs/attachments/access_context_manager.svg", label: "differen syntax", pos: "t", w: 60, h: 60, constraint: "on" }
+
+            A --> B
+        classDef foo fill:transparent,stroke:transparent
+        classDef bar fill:transparent,stroke:transparent
+        end
+    end
+
+    classDef transparentClass fill:transparent,stroke:transparent    
 ```
 
 ## System Architecture / Design

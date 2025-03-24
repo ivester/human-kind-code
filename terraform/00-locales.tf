@@ -6,6 +6,6 @@ locals {
     "container.googleapis.com",
     "containerregistry.googleapis.com",
     "logging.googleapis.com",
-    "secretmanager.googleapis.com"
+    "secretmanager.googleapis.com" # TODO maybe comment out for now and see if everything else works without it
   ]
 }

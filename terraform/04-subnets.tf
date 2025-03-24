@@ -1,3 +1,4 @@
+# TODO should I remove this one, I think I don't need this one since I only have GKE with NAT.
 resource "google_compute_subnetwork" "public" {
   name                     = "public"
   ip_cidr_range            = "10.0.0.0/19"
