@@ -24,16 +24,19 @@ resource "google_container_node_pool" "general" {
   name    = "general"
   cluster = google_container_cluster.gke.id
 
+  # TODO is this needed, can this be configured through kubernetes yaml config? or is this for the plane nodes?
   autoscaling {
     total_min_node_count = 1
     total_max_node_count = 3
   }
 
+  # TODO is this needed, can this be configured through kubernetes yaml config? or is this for the plane nodes?
   management {
     auto_repair  = true
     auto_upgrade = true
   }
 
+  # TODO is this needed, can this be configured through kubernetes yaml config? or is this for the plane nodes?
   node_config {
     preemptible  = false
     machine_type = "e2-medium"
@@ -46,8 +49,8 @@ resource "google_container_node_pool" "general" {
     oauth_scopes    = ["https://www.googleapis.com/auth/cloud-platform"]
 
     metadata = {
-      "kubernetes.io/arch" = "amd64"
-      "kubernetes.io/os"   = "linux"
+      "kubernetes-io-arch" = "amd64"
+      "kubernetes-io-os"   = "linux"
     }
   }
 }

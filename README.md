@@ -69,6 +69,12 @@ kubectl get nodes
 
 # Apply the Kubernetes configuration
 kubectl apply -f ./k8s-deployment.yaml
+
+# Get public IP to access the application
+kubectl get service hkc-nuxt-app 
+# Respond:
+# NAME           TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)        AGE
+# hkc-nuxt-app   LoadBalancer   172.20.48.143   34.107.52.244   80:32262/TCP   36m
 ```
 
 - `gcloud container clusters get-credentials <your-cluster-name> --region <your-region>`: Authenticate with GKE cluster
