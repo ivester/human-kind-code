@@ -48,6 +48,7 @@ resource "google_container_node_pool" "general" {
     service_account = google_service_account.gke.email
     oauth_scopes    = ["https://www.googleapis.com/auth/cloud-platform"]
 
+    // TODO this seems another issue to cause changes in terraform plan - can I move this into k8s yaml config file?
     metadata = {
       "kubernetes-io-arch" = "amd64"
       "kubernetes-io-os"   = "linux"
