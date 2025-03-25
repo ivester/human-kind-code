@@ -24,6 +24,10 @@ resource "google_container_node_pool" "general" {
   name    = "general"
   cluster = google_container_cluster.gke.id
 
+  lifecycle {
+    ignore_changes = [node_config[0].metadata]
+  }
+
   # TODO is this needed, can this be configured through kubernetes yaml config? or is this for the plane nodes?
   autoscaling {
     total_min_node_count = 1
