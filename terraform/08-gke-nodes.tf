@@ -30,7 +30,7 @@ resource "google_container_node_pool" "general" {
 
   # TODO is this needed, can this be configured through kubernetes yaml config? or is this for the plane nodes?
   autoscaling {
-    total_min_node_count = 1
+    total_min_node_count = 2
     total_max_node_count = 3
   }
 

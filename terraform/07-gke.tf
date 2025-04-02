@@ -11,6 +11,7 @@ resource "google_container_cluster" "gke" {
   # so I can delete the cluster while not using it
   deletion_protection = false
 
+  // TODO can this be manage through k8s yaml config file?
   addons_config {
     http_load_balancing {
       disabled = true

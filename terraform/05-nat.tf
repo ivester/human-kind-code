@@ -22,7 +22,7 @@ resource "google_compute_router_nat" "nat" {
   nat_ips                            = [google_compute_address.nat.self_link]
 
   subnetwork {
-    name                    = google_compute_subnetwork.private.self_link // TODO <-- I guess this is what adds the NAT to the private subnet
+    name                    = google_compute_subnetwork.private.self_link
     source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
   }
 }
