@@ -22,3 +22,22 @@ logs
 .env
 .env.*
 !.env.example
+
+# Terraform
+terraform.tfstate
+terraform.tfstate.backup
+*.tfplan
+.terraform/
+.terraform.tfstate.lock.info
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Crash logs
+crash.log
+
+
+# Sensitive files
+*.pem
+*.key
