@@ -6,6 +6,5 @@ locals {
     "container.googleapis.com",
     "containerregistry.googleapis.com",
     "logging.googleapis.com",
-    # "secretmanager.googleapis.com" # TODO temporarily brought back - tring to fix ContainerCreation issue
   ]
 }
